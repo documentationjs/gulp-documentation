@@ -1,23 +1,27 @@
 {
   "name": "gulp-documentation",
-  "version": "1.0.0",
   "description": "documentation plugin for gulp",
-  "main": "index.js",
-  "scripts": {
-    "test": "tape test.js"
-  },
-  "keywords": [
-    "gulp",
-    "documentation",
-    "jsdoc"
-  ],
+  "version": "1.0.0",
   "author": "Tom MacWright",
-  "license": "ISC",
   "dependencies": {
     "through2": "^0.6.3"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
     "tape": "^3.5.0"
+  },
+  "keywords": [
+    "documentation",
+    "gulp",
+    "jsdoc"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:documentationjs/gulp-documentation.git"
+  },
+  "scripts": {
+    "test": "tape test.js"
   }
 }
