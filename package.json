@@ -4,7 +4,10 @@
   "version": "1.0.0",
   "author": "Tom MacWright",
   "dependencies": {
-    "through2": "^0.6.3"
+    "concat-stream": "^1.4.8",
+    "documentation": "^1.0.5",
+    "through2": "^0.6.3",
+    "vinyl": "^0.4.6"
   },
   "devDependencies": {
     "gulp": "^3.8.11",

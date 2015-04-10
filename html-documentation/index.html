@@ -1,0 +1,92 @@
+<html>
+<head>
+  <title> </title>
+  <link href='assets/bass.css' type='text/css' rel='stylesheet' />
+  <link href='assets/style.css' type='text/css' rel='stylesheet' />
+  <link href='assets/github.css' type='text/css' rel='stylesheet' />
+</head>
+<body class='documentation'>
+  <div class='px2'>
+    <div class='clearfix flex flex-stretch mxn2'>
+      <div class='documentation-sidebar relative top-0 bottom-0 right-0 px2 py2 sm-col-3 md-col-2 sm-show'>
+        <div class='font-smaller fixed sm-col-3 md-col-2 top-0 bottom-0 left-0 overflow-auto black bg-cloudy'>
+          <a href="/" class="h5 button block button-transparent"> </a>
+          <div class='px2'>
+              <a
+                href='#documentation'
+                class='regular block'>
+                <code>documentation</code>
+              </a>
+          </div>
+        </div>
+      </div>
+      <div class='sm-col sm-col-9 md-col-10 flex flex-column'>
+        <div class='flex-auto full-width'>
+<section id='documentation'class='mt2 mb2 py1 px3 keyline-top'>
+  <h3 class='regular'>
+    <a class='black' href='#documentation'>
+      <code>
+        documentation<span class='gray'>(options, options.format, options.filename)</span>
+      </code>
+    </a>
+  </h3>
+  <p>Documentation stream intended for use within the gulp system.</p>
+
+
+    <p>
+      <table class='table-light overflow-hidden bg-cloudy-light'>
+        <thead>
+          <th class='col-3'>parameter</th>
+          <th class='col-3'>type</th>
+          <th class='col-6'>description</th>
+        </thead>
+          <tr>
+            <td>options</td>
+            <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code></td>
+            <td><p>output options</p>
+</td>
+          </tr>
+          <tr>
+            <td>options.format</td>
+            <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string">string</a></code></td>
+            <td><p>either 'html', 'md', 'json', or 'docset'</p>
+</td>
+          </tr>
+          <tr>
+            <td>options.filename</td>
+            <td><code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string">string</a></code></td>
+            <td><p>custom filename for md or json output</p>
+</td>
+          </tr>
+      </table>
+    </p>
+
+      <h4>Returns</h4>
+      <code><code>stream.Transform</code></code>
+      
+      <span class='force-inline'>
+        
+      </span>
+
+    <h4>Examples</h4>
+<pre><span class="hljs-keyword">var</span> documentation = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./'</span>),
+    gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp'</span>);
+
+gulp.task(<span class="hljs-string">'documentation'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+  gulp.src(<span class="hljs-string">'./index.js'</span>)
+    .pipe(documentation({
+      format: <span class="hljs-string">'html'</span>
+    }))
+    .pipe(gulp.dest(<span class="hljs-string">'documentation'</span>));
+});</pre>
+
+
+
+</section>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
