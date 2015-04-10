@@ -14,10 +14,16 @@ to generate great documentation for your JavaScript projects.
 
 Returns `stream.Transform`
 
+## Installation
+
+```sh
+$ npm install --save-dev gulp-documentation
+```
+
 ## Example
 
 ```js
-var documentation = require('documentation'),
+var documentation = require('gulp-documentation'),
     gulp = require('gulp');
 
 gulp.task('documentation', function () {
