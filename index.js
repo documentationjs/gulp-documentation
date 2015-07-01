@@ -34,7 +34,7 @@ module.exports = function (options) {
   return through2.obj(function document(file, enc, cb) {
     files.push(file);
     cb();
-  }, function () {
+  }, function (cb) {
     var that = this;
     documentation(files.map(function(file) {
       return file.path;
@@ -53,6 +53,6 @@ module.exports = function (options) {
       } else {
         console.error('unknown type detected');
       }
-    }));
+    }).on('finish', function() { cb(); } ));
   });
 };
