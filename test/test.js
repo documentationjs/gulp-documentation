@@ -25,3 +25,13 @@ test('gulp-documentation md custom name', function(t) {
             t.end();
         });
 });
+
+test('gulp-documentation exit callback', function(t) {
+    t.plan(1);    
+    gulp.src(path.join(__dirname, '/fixture.js'))
+        .pipe(documentation({ format: 'md' }))
+        .on('end', function() { t.pass(); })
+        .resume();
+    
+});
+
