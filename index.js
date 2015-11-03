@@ -1,6 +1,5 @@
 var through2 = require('through2'),
   File = require('vinyl'),
-  concat = require('concat-stream'),
   documentation = require('documentation');
 
 /**
@@ -22,37 +21,53 @@ var through2 = require('through2'),
  *     }))
  *     .pipe(gulp.dest('documentation'));
  * });
+ *
+ * // documentation with JSON output, default filename API.md
+ * gulp.task('documentation-json', function () {
+ *   gulp.src('./index.js')
+ *     .pipe(documentation({
+ *       format: 'json'
+ *     }))
+ *     .pipe(gulp.dest('documentation'));
+ * });
+ *
+ * // documentation with markdown output, default filename API.md
+ * gulp.task('documentation-md', function () {
+ *   gulp.src('./index.js')
+ *     .pipe(documentation({
+ *       format: 'md'
+ *     }))
+ *     .pipe(gulp.dest('documentation'));
+ * });
  */
 module.exports = function (options) {
   options = options || {};
   var files = [];
   options.format = options.format || 'html';
-  var format = documentation.formats[options.format];
-  if (!format) {
-    console.error('invalid format given: valid options are ' + Object.keys(documentation.formats).join(', '));
+  var formatter = documentation.formats[options.format];
+  if (!formatter) {
+    throw new Error('invalid format given: valid options are ' + Object.keys(documentation.formats).join(', '));
   }
   return through2.obj(function document(file, enc, cb) {
     files.push(file);
     cb();
   }, function (cb) {
-    var that = this;
     documentation(files.map(function(file) {
       return file.path;
-    }))
-    .pipe(format(options))
-    .pipe(concat(function (output) {
-      if (typeof output === 'string') {
-        that.push(new File({
-          path: options.filename || 'API.' + options.format,
-          contents: new Buffer(output)
-        }));
-      } else if (Array.isArray(output)) {
-        output.forEach(function(f) {
-          that.push(f);
-        });
-      } else {
-        console.error('unknown type detected');
-      }
-    }).on('finish', function() { cb(); } ));
+    }), {}, function(err, comments) {
+      formatter(comments, {}, function (err, output) {
+        if (options.format === 'json' || options.format === 'md') {
+          this.push(new File({
+            path: options.filename || 'API.' + options.format,
+            contents: new Buffer(output)
+          }));
+        } else if (options.format === 'html') {
+          output.forEach(function(file) {
+            this.push(file);
+          }.bind(this));
+        }
+        cb();
+      }.bind(this));
+    }.bind(this));
   });
 };

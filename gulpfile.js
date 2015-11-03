@@ -1,5 +1,5 @@
 var documentation = require('./'),
-    gulp = require('gulp');
+  gulp = require('gulp');
 
 gulp.task('documentation', function () {
 

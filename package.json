@@ -4,13 +4,14 @@
   "version": "1.0.1",
   "author": "Tom MacWright",
   "dependencies": {
-    "concat-stream": "^1.4.8",
-    "documentation": "^1.0.5",
+    "documentation": "^3.0.0",
     "through2": "^0.6.3",
     "vinyl": "^0.4.6"
   },
   "devDependencies": {
+    "eslint": "^1.8.0",
     "gulp": "^3.8.11",
+    "concat-stream": "^1.4.8",
     "prova": "^2.1.1",
     "tape": "^3.5.0"
   },
@@ -27,6 +28,6 @@
     "url": "git@github.com:documentationjs/gulp-documentation.git"
   },
   "scripts": {
-    "test": "prova test/test.js"
+    "test": "eslint . && prova test/test.js"
   }
 }
