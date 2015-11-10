@@ -42,6 +42,9 @@ var through2 = require('through2'),
  */
 module.exports = function (options) {
   options = options || {};
+  var docOptions = {
+    github : !!(options.github || options.g)
+  };
   var files = [];
   options.format = options.format || 'html';
   var formatter = documentation.formats[options.format];
@@ -54,7 +57,7 @@ module.exports = function (options) {
   }, function (cb) {
     documentation(files.map(function(file) {
       return file.path;
-    }), {}, function(err, comments) {
+    }), docOptions, function(err, comments) {
       formatter(comments, {}, function (err, output) {
         if (options.format === 'json' || options.format === 'md') {
           this.push(new File({
