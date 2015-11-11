@@ -13,6 +13,7 @@
     "gulp": "^3.8.11",
     "concat-stream": "^1.4.8",
     "prova": "^2.1.1",
+    "proxyquire": "^1.7.3",
     "tape": "^3.5.0"
   },
   "keywords": [
