@@ -43,7 +43,8 @@ var through2 = require('through2'),
 module.exports = function (options) {
   options = options || {};
   var docOptions = {
-    github : !!(options.github || options.g)
+    github : !!(options.github || options.g),
+    shallow: options.shallow || false
   };
   var files = [];
   options.format = options.format || 'html';
