@@ -1,6 +1,5 @@
 var through2 = require('through2'),
-  File = require('vinyl'),
-  documentation = require('documentation');
+  File = require('vinyl');
 
 /**
  * Documentation stream intended for use within the gulp system.
@@ -9,6 +8,7 @@ var through2 = require('through2'),
  * @param {Object} options output options
  * @param {string} options.format either 'html', 'md', 'json', or 'docset'
  * @param {string} options.filename custom filename for md or json output
+ * @param {Object} [documentation] your custom instance of documentation.js
  * @returns {stream.Transform}
  * @example
  * var documentation = require('./'),
@@ -39,9 +39,26 @@ var through2 = require('through2'),
  *     }))
  *     .pipe(gulp.dest('documentation'));
  * });
+ * 
+ * 
+ * // documentation with JSON output, default filename API.md and custom Documentation instance
+ * var documentation = require('gulp-documentation'),
+ *     $documentation = require('documentation');
+ *     
+ * 
+ * gulp.task('documentation-json', function () {
+ *   gulp.src('./index.js')
+ *     .pipe(documentation({
+ *       format: 'json'
+ *     }, $documentation))
+ *     .pipe(gulp.dest('documentation'));
+ * });
+ *
  */
-module.exports = function (options) {
+module.exports = function (options, documentation) {
   options = options || {};
+  documentation = documentation || require('documentation');
+
   var docOptions = {
     github : !!(options.github || options.g),
     shallow: options.shallow || false
