@@ -8,6 +8,7 @@ var through2 = require('through2'),
  * @param {Object} options output options
  * @param {string} options.format either 'html', 'md', 'json', or 'docset'
  * @param {string} options.filename custom filename for md or json output
+ * @param {Object} [documentation] your custom instance of documentation.js
  * @returns {stream.Transform}
  * @example
  * var documentation = require('./'),
