@@ -1,5 +1,6 @@
-var through2 = require('through2'),
-  File = require('vinyl');
+var documentation = require('documentation');
+var through2 = require('through2');
+var File = require('vinyl');
 
 /**
  * Documentation stream intended for use within the gulp system.
@@ -55,9 +56,8 @@ var through2 = require('through2'),
  * });
  *
  */
-module.exports = function (options, documentation) {
+module.exports = function (options) {
   options = options || {};
-  documentation = documentation || require('documentation');
 
   var docOptions = {
     github : !!(options.github || options.g),
@@ -73,7 +73,7 @@ module.exports = function (options, documentation) {
     files.push(file);
     cb();
   }, function (cb) {
-    documentation(files.map(function(file) {
+    documentation.build(files.map(function(file) {
       return file.path;
     }), docOptions, function(err, comments) {
       formatter(comments, {}, function (err, output) {

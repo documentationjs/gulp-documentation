@@ -1,8 +1,7 @@
-var test = require('prova'),
+var test = require('tap').test,
   path = require('path'),
   concat = require('concat-stream'),
   gulp = require('gulp'),
-  proxyquire = require('proxyquire'),
   documentation = require('../');
 
 test('gulp-documentation', function(t) {
@@ -41,27 +40,9 @@ test('gulp-documentation html', function(t) {
   gulp.src(path.join(__dirname, '/fixture.js'))
     .pipe(documentation({ format: 'html' }))
     .pipe(concat(function(d) {
-      t.equal(d.length, 7);
+      t.equal(d.length, 34);
       t.end();
     }));
-});
-
-test('gulp-documentation github links', function(t) {
-  var through2Stub = {
-      obj : function (indexes, callback) {
-        callback.call();
-      }
-    },
-    documentationStub = function(indexes, options) {
-      t.equal(options.github, true);
-      t.end();
-    },
-    documentationjs = proxyquire('../', {
-      'through2': through2Stub,
-      'documentation': documentationStub
-    });
-
-  documentationjs({ format: 'html', github: true });
 });
 
 test('gulp-documentation exit callback', function(t) {
