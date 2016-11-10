@@ -4,17 +4,15 @@
   "version": "2.2.0",
   "author": "Tom MacWright",
   "dependencies": {
-    "documentation": "^3.0.0",
-    "through2": "^0.6.3",
-    "vinyl": "^0.4.6"
+    "documentation": "4.0.0-beta13",
+    "through2": "^2.0.1",
+    "vinyl": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^1.8.0",
-    "gulp": "^3.8.11",
     "concat-stream": "^1.4.8",
-    "prova": "^2.1.1",
-    "proxyquire": "^1.7.3",
-    "tape": "^3.5.0"
+    "eslint": "^3.9.1",
+    "gulp": "^3.8.11",
+    "tap": "8.0.0"
   },
   "keywords": [
     "documentation",
@@ -22,13 +20,14 @@
     "gulpplugin",
     "jsdoc"
   ],
-  "license": "ISC",
+  "license": "BSD-2-Clause",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:documentationjs/gulp-documentation.git"
   },
   "scripts": {
-    "test": "eslint . && prova test/test.js"
+    "test": "eslint . && tap test/test.js",
+    "docs": "documentation readme index.js --section=API"
   }
 }

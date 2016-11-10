@@ -1,71 +1,83 @@
-var through2 = require('through2'),
-  File = require('vinyl');
+var documentation = require('documentation');
+var through2 = require('through2');
+var File = require('vinyl');
 
 /**
  * Documentation stream intended for use within the gulp system.
  *
  * @name documentation
- * @param {Object} options output options
- * @param {string} options.format either 'html', 'md', 'json', or 'docset'
+ * @param {string} [format=md] format - one of 'html', 'md', or 'json'
+ * @param {Object} options documentation options - the same as given to [documentation](https://github.com/documentationjs/documentation)
  * @param {string} options.filename custom filename for md or json output
- * @param {Object} [documentation] your custom instance of documentation.js
+ * @param {Object} formatterOptions output options - same as given to documentation
+ * @param {Object} formatterOptions.name if format is HTML, specifies the name of the project
  * @returns {stream.Transform}
  * @example
- * var documentation = require('./'),
- *     gulp = require('gulp');
- *
+ * var gulpDocumentation = require('gulp-documentation'),
+ * var gulp = require('gulp');
+ * //  Out of the box, you can generate JSON, HTML, and Markdown documentation
  * gulp.task('documentation', function () {
+ * 
+ *   // Generating README documentation
  *   gulp.src('./index.js')
- *     .pipe(documentation({
- *       format: 'html'
- *     }))
- *     .pipe(gulp.dest('documentation'));
+ *     .pipe(gulpDocumentation('md'))
+ *     .pipe(gulp.dest('md-documentation'));
+ * 
+ *   // Generating a pretty HTML documentation site
+ *   gulp.src('./index.js')
+ *     .pipe(gulpDocumentation('html))
+ *     .pipe(gulp.dest('html-documentation'));
+ * 
+ *   // Generating raw JSON documentation output
+ *   gulp.src('./index.js')
+ *     .pipe(gulpDocumentation('json'))
+ *     .pipe(gulp.dest('json-documentation'));
+ * 
  * });
- *
- * // documentation with JSON output, default filename API.md
- * gulp.task('documentation-json', function () {
- *   gulp.src('./index.js')
- *     .pipe(documentation({
- *       format: 'json'
- *     }))
- *     .pipe(gulp.dest('documentation'));
- * });
- *
- * // documentation with markdown output, default filename API.md
- * gulp.task('documentation-md', function () {
- *   gulp.src('./index.js')
- *     .pipe(documentation({
- *       format: 'md'
- *     }))
- *     .pipe(gulp.dest('documentation'));
+ * 
+ * // Generate documentation for multiple files using normal glob syntax.
+ * // Note that this generates one documentation output, so that it can
+ * // easily cross-reference and use types.
+ * gulp.task('documentation-multiple-files', function () {
+ * 
+ *   gulp.src('./src/*.js')
+ *     .pipe(gulpDocumentation({ format: 'md' }))
+ *     .pipe(gulp.dest('md-documentation'));
+ * 
  * });
  * 
  * 
- * // documentation with JSON output, default filename API.md and custom Documentation instance
- * var documentation = require('gulp-documentation'),
- *     $documentation = require('documentation');
- *     
+ * // If you're using HTML documentation, you can specify additional 'name'
+ * // and 'version' options
+ * gulp.task('documentation-html-options', function () {
  * 
- * gulp.task('documentation-json', function () {
- *   gulp.src('./index.js')
- *     .pipe(documentation({
- *       format: 'json'
- *     }, $documentation))
- *     .pipe(gulp.dest('documentation'));
+ *   gulp.src('./src/*.js')
+ *     .pipe(gulpDocumentation('html', {}, {
+ *       name: 'My Project',
+ *       version: '1.0.0'
+ *     }))
+ *     .pipe(gulp.dest('html-documentation'));
+ * 
  * });
  *
+ * // Document non-JavaScript files with JSDoc comments using polyglot: true
+ * gulp.task('documentation-for-cplusplus', function () {
+ * 
+ *   gulp.src('./src/*.cpp')
+ *     .pipe(gulpDocumentation('html', { polyglot: true }, {
+ *       name: 'My Project',
+ *       version: '1.0.0'
+ *     }))
+ *     .pipe(gulp.dest('html-documentation'));
+ * 
+ * });
  */
-module.exports = function (options, documentation) {
+module.exports = function (format, options, formatterOptions) {
   options = options || {};
-  documentation = documentation || require('documentation');
-
-  var docOptions = {
-    github : !!(options.github || options.g),
-    shallow: options.shallow || false
-  };
+  formatterOptions = formatterOptions || {};
   var files = [];
-  options.format = options.format || 'html';
-  var formatter = documentation.formats[options.format];
+  format = format || 'md';
+  var formatter = documentation.formats[format];
   if (!formatter) {
     throw new Error('invalid format given: valid options are ' + Object.keys(documentation.formats).join(', '));
   }
@@ -73,16 +85,16 @@ module.exports = function (options, documentation) {
     files.push(file);
     cb();
   }, function (cb) {
-    documentation(files.map(function(file) {
+    documentation.build(files.map(function(file) {
       return file.path;
-    }), docOptions, function(err, comments) {
-      formatter(comments, {}, function (err, output) {
-        if (options.format === 'json' || options.format === 'md') {
+    }), options, function(err, comments) {
+      formatter(comments, formatterOptions, function (err, output) {
+        if (format === 'json' || format === 'md') {
           this.push(new File({
-            path: options.filename || 'API.' + options.format,
+            path: options.filename || 'API.' + format,
             contents: new Buffer(output)
           }));
-        } else if (options.format === 'html') {
+        } else if (format === 'html') {
           output.forEach(function(file) {
             this.push(file);
           }.bind(this));
