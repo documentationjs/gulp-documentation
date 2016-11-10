@@ -12,7 +12,6 @@
     "concat-stream": "^1.4.8",
     "eslint": "^3.9.1",
     "gulp": "^3.8.11",
-    "proxyquire": "^1.7.3",
     "tap": "8.0.0"
   },
   "keywords": [
