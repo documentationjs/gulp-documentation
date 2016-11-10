@@ -9,6 +9,14 @@ gulp.task('documentation', function () {
 
 });
 
+gulp.task('documentation-polyglot', function () {
+
+  gulp.src('./src-cpp/*.js')
+    .pipe(gulpDocumentation('md', { polyglot: true }))
+    .pipe(gulp.dest('cpp-documentation'));
+
+});
+
 gulp.task('documentation-shallow', function () {
 
   gulp.src('./src/*.js')

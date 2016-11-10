@@ -59,6 +59,18 @@ var File = require('vinyl');
  *     .pipe(gulp.dest('html-documentation'));
  * 
  * });
+ *
+ * // Document non-JavaScript files with JSDoc comments using polyglot: true
+ * gulp.task('documentation-for-cplusplus', function () {
+ * 
+ *   gulp.src('./src/*.cpp')
+ *     .pipe(gulpDocumentation('html', { polyglot: true }, {
+ *       name: 'My Project',
+ *       version: '1.0.0'
+ *     }))
+ *     .pipe(gulp.dest('html-documentation'));
+ * 
+ * });
  */
 module.exports = function (format, options, formatterOptions) {
   var files = [];
