@@ -27,6 +27,7 @@
     "url": "git@github.com:documentationjs/gulp-documentation.git"
   },
   "scripts": {
-    "test": "eslint . && tap test/test.js"
+    "test": "eslint . && tap test/test.js",
+    "docs": "documentation readme index.js --section=API"
   }
 }

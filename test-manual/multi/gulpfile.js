@@ -4,7 +4,7 @@ var gulpDocumentation = require('../../'),
 gulp.task('documentation', function () {
 
   gulp.src('./src/*.js')
-    .pipe(gulpDocumentation({ format: 'md' }))
+    .pipe(gulpDocumentation('md'))
     .pipe(gulp.dest('md-documentation'));
 
 });
@@ -12,7 +12,15 @@ gulp.task('documentation', function () {
 gulp.task('documentation-shallow', function () {
 
   gulp.src('./src/*.js')
-    .pipe(gulpDocumentation({ shallow: true, format: 'md' }))
+    .pipe(gulpDocumentation('md', { shallow: true }))
     .pipe(gulp.dest('md-documentation'));
+
+});
+
+gulp.task('documentation-name', function () {
+
+  gulp.src('./src/*.js')
+    .pipe(gulpDocumentation('html', { shallow: true }, { name: 'My Project' }))
+    .pipe(gulp.dest('html-documentation'));
 
 });
