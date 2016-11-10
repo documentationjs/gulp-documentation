@@ -11,7 +11,7 @@ test('gulp-documentation', function(t) {
 
 test('gulp-documentation md', function(t) {
   gulp.src(path.join(__dirname, '/fixture.js'))
-    .pipe(documentation({ format: 'md' }))
+    .pipe(documentation('md', {}, {}))
     .on('data', function(d) {
       t.equal(d.path, 'API.md');
       t.end();
@@ -20,7 +20,7 @@ test('gulp-documentation md', function(t) {
 
 test('gulp-documentation md custom name', function(t) {
   gulp.src(path.join(__dirname, '/fixture.js'))
-    .pipe(documentation({ format: 'md', filename: 'foo.md' }))
+    .pipe(documentation('md', { filename: 'foo.md' }))
     .on('data', function(d) {
       t.equal(d.path, 'foo.md');
       t.end();
@@ -29,7 +29,7 @@ test('gulp-documentation md custom name', function(t) {
 
 test('gulp-documentation json', function(t) {
   gulp.src(path.join(__dirname, '/fixture.js'))
-    .pipe(documentation({ format: 'json' }))
+    .pipe(documentation('json'))
     .on('data', function(d) {
       t.ok(JSON.parse(d.contents), 'is json');
       t.end();
@@ -38,7 +38,7 @@ test('gulp-documentation json', function(t) {
 
 test('gulp-documentation html', function(t) {
   gulp.src(path.join(__dirname, '/fixture.js'))
-    .pipe(documentation({ format: 'html' }))
+    .pipe(documentation('html'))
     .pipe(concat(function(d) {
       t.equal(d.length, 34);
       t.end();
@@ -48,7 +48,7 @@ test('gulp-documentation html', function(t) {
 test('gulp-documentation exit callback', function(t) {
   t.plan(1);
   gulp.src(path.join(__dirname, '/fixture.js'))
-    .pipe(documentation({ format: 'md' }))
+    .pipe(documentation('md'))
     .on('end', function() { t.pass(); })
     .resume();
 });

@@ -73,6 +73,8 @@ var File = require('vinyl');
  * });
  */
 module.exports = function (format, options, formatterOptions) {
+  options = options || {};
+  formatterOptions = formatterOptions || {};
   var files = [];
   format = format || 'md';
   var formatter = documentation.formats[format];
@@ -89,7 +91,7 @@ module.exports = function (format, options, formatterOptions) {
       formatter(comments, formatterOptions, function (err, output) {
         if (format === 'json' || format === 'md') {
           this.push(new File({
-            path: options.filename || 'API.' + options.format,
+            path: options.filename || 'API.' + format,
             contents: new Buffer(output)
           }));
         } else if (format === 'html') {
