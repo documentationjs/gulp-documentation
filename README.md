@@ -43,7 +43,7 @@ gulp.task('documentation', function () {
 
   // Generating a pretty HTML documentation site
   gulp.src('./index.js')
-    .pipe(gulpDocumentation('html))
+    .pipe(gulpDocumentation('html'))
     .pipe(gulp.dest('html-documentation'));
 
   // Generating raw JSON documentation output
