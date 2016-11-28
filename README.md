@@ -59,7 +59,7 @@ gulp.task('documentation', function () {
 gulp.task('documentation-multiple-files', function () {
 
   gulp.src('./src/*.js')
-    .pipe(gulpDocumentation({ format: 'md' }))
+    .pipe(gulpDocumentation('md'))
     .pipe(gulp.dest('md-documentation'));
 
 });
