@@ -16,60 +16,56 @@ var File = require('vinyl');
  * var gulpDocumentation = require('gulp-documentation'),
  * var gulp = require('gulp');
  * //  Out of the box, you can generate JSON, HTML, and Markdown documentation
- * gulp.task('documentation', function () {
- * 
+ * gulp.task('documentation-readme-example', function () {
  *   // Generating README documentation
- *   gulp.src('./index.js')
+ *   return gulp.src('./index.js')
  *     .pipe(gulpDocumentation('md'))
  *     .pipe(gulp.dest('md-documentation'));
+ * });
  * 
- *   // Generating a pretty HTML documentation site
- *   gulp.src('./index.js')
+ * // Generating a pretty HTML documentation site
+ * gulp.task('documentation-html-example', function () {
+ *   return gulp.src('./index.js')
  *     .pipe(gulpDocumentation('html'))
  *     .pipe(gulp.dest('html-documentation'));
+ * });
  * 
- *   // Generating raw JSON documentation output
- *   gulp.src('./index.js')
+ * // Generating raw JSON documentation output
+ * gulp.task('documentation-json-example', function () {
+ *   return gulp.src('./index.js')
  *     .pipe(gulpDocumentation('json'))
  *     .pipe(gulp.dest('json-documentation'));
- * 
  * });
  * 
  * // Generate documentation for multiple files using normal glob syntax.
  * // Note that this generates one documentation output, so that it can
  * // easily cross-reference and use types.
  * gulp.task('documentation-multiple-files', function () {
- * 
- *   gulp.src('./src/*.js')
+ *   return gulp.src('./src/*.js')
  *     .pipe(gulpDocumentation('md'))
  *     .pipe(gulp.dest('md-documentation'));
- * 
  * });
  * 
  * 
  * // If you're using HTML documentation, you can specify additional 'name'
  * // and 'version' options
  * gulp.task('documentation-html-options', function () {
- * 
- *   gulp.src('./src/*.js')
+ *   return gulp.src('./src/*.js')
  *     .pipe(gulpDocumentation('html', {}, {
  *       name: 'My Project',
  *       version: '1.0.0'
  *     }))
  *     .pipe(gulp.dest('html-documentation'));
- * 
  * });
  *
  * // Document non-JavaScript files with JSDoc comments using polyglot: true
  * gulp.task('documentation-for-cplusplus', function () {
- * 
- *   gulp.src('./src/*.cpp')
+ *   return gulp.src('./src/*.cpp')
  *     .pipe(gulpDocumentation('html', { polyglot: true }, {
  *       name: 'My Project',
  *       version: '1.0.0'
  *     }))
  *     .pipe(gulp.dest('html-documentation'));
- * 
  * });
  */
 module.exports = function (format, options, formatterOptions) {
