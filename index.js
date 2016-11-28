@@ -25,7 +25,7 @@ var File = require('vinyl');
  * 
  *   // Generating a pretty HTML documentation site
  *   gulp.src('./index.js')
- *     .pipe(gulpDocumentation('html))
+ *     .pipe(gulpDocumentation('html'))
  *     .pipe(gulp.dest('html-documentation'));
  * 
  *   // Generating raw JSON documentation output
@@ -41,7 +41,7 @@ var File = require('vinyl');
  * gulp.task('documentation-multiple-files', function () {
  * 
  *   gulp.src('./src/*.js')
- *     .pipe(gulpDocumentation({ format: 'md' }))
+ *     .pipe(gulpDocumentation('md'))
  *     .pipe(gulp.dest('md-documentation'));
  * 
  * });
