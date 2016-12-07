@@ -1,10 +1,10 @@
 {
   "name": "gulp-documentation",
   "description": "documentation plugin for gulp",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "author": "Tom MacWright",
   "dependencies": {
-    "documentation": "4.0.0-beta13",
+    "documentation": "4.0.0-beta16",
     "through2": "^2.0.1",
     "vinyl": "^2.0.0"
   },
