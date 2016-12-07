@@ -1,3 +1,19 @@
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/documentationjs/gulp-documentation/compare/v3.0.0...v3.1.0) (2016-12-07)
+
+
+### Bug Fixes
+
+* **docs:** fix broken examples in code refs #20 ([2cafc52](https://github.com/documentationjs/gulp-documentation/commit/2cafc52)), closes [#20](https://github.com/documentationjs/gulp-documentation/issues/20)
+* **docs:** Fix straggling old-fashioned example ([d213581](https://github.com/documentationjs/gulp-documentation/commit/d213581))
+
+### Features
+
+* **documentation:** Update to documentation beta16, use conventional changelog ([49ab102](https://github.com/documentationjs/gulp-documentation/commit/49ab102))
+
+
+
+
 ## 3.0.0
 
 - Updates documentation to v4.0.0-beta12

@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "concat-stream": "^1.4.8",
+    "cz-conventional-changelog": "^1.2.0",
     "eslint": "^3.9.1",
     "gulp": "^3.8.11",
     "tap": "8.0.0"
@@ -29,5 +30,10 @@
   "scripts": {
     "test": "eslint . && tap test/test.js",
     "docs": "documentation readme index.js --section=API"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
