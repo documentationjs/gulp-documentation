@@ -31,7 +31,7 @@ Documentation stream intended for use within the gulp system.
 **Examples**
 
 ```javascript
-var gulpDocumentation = require('gulp-documentation'),
+var gulpDocumentation = require('gulp-documentation');
 var gulp = require('gulp');
 //  Out of the box, you can generate JSON, HTML, and Markdown documentation
 gulp.task('documentation-readme-example', function () {
