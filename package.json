@@ -1,7 +1,7 @@
 {
   "name": "gulp-documentation",
   "description": "documentation plugin for gulp",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "author": "Tom MacWright",
   "dependencies": {
     "documentation": "4.0.0-beta.18",
