@@ -10,10 +10,10 @@
   },
   "devDependencies": {
     "concat-stream": "^1.4.8",
-    "cz-conventional-changelog": "^1.2.0",
+    "cz-conventional-changelog": "^2.0.0",
     "eslint": "^3.9.1",
     "gulp": "^3.8.11",
-    "tap": "8.0.0"
+    "tap": "10.3.2"
   },
   "keywords": [
     "documentation",
