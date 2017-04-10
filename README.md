@@ -1,5 +1,7 @@
 # gulp-documentation
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/documentationjs/gulp-documentation.svg)](https://greenkeeper.io/)
+
 [![Circle CI](https://circleci.com/gh/documentationjs/gulp-documentation.svg?style=svg)](https://circleci.com/gh/documentationjs/gulp-documentation)
 
 Use [gulp](http://gulpjs.com/) with
