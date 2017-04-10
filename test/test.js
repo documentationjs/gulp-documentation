@@ -10,7 +10,8 @@ test('gulp-documentation', function(t) {
 });
 
 test('gulp-documentation md', function(t) {
-  gulp.src(path.join(__dirname, '/fixture.js'))
+  gulp
+    .src(path.join(__dirname, '/fixture.js'))
     .pipe(documentation('md', {}, {}))
     .on('data', function(d) {
       t.equal(d.path, 'API.md');
@@ -19,7 +20,8 @@ test('gulp-documentation md', function(t) {
 });
 
 test('gulp-documentation md custom name', function(t) {
-  gulp.src(path.join(__dirname, '/fixture.js'))
+  gulp
+    .src(path.join(__dirname, '/fixture.js'))
     .pipe(documentation('md', { filename: 'foo.md' }))
     .on('data', function(d) {
       t.equal(d.path, 'foo.md');
@@ -28,7 +30,8 @@ test('gulp-documentation md custom name', function(t) {
 });
 
 test('gulp-documentation json', function(t) {
-  gulp.src(path.join(__dirname, '/fixture.js'))
+  gulp
+    .src(path.join(__dirname, '/fixture.js'))
     .pipe(documentation('json'))
     .on('data', function(d) {
       t.ok(JSON.parse(d.contents), 'is json');
@@ -37,18 +40,24 @@ test('gulp-documentation json', function(t) {
 });
 
 test('gulp-documentation html', function(t) {
-  gulp.src(path.join(__dirname, '/fixture.js'))
+  gulp
+    .src(path.join(__dirname, '/fixture.js'))
     .pipe(documentation('html'))
-    .pipe(concat(function(d) {
-      t.equal(d.length, 34);
-      t.end();
-    }));
+    .pipe(
+      concat(function(d) {
+        t.equal(d.length, 34);
+        t.end();
+      })
+    );
 });
 
 test('gulp-documentation exit callback', function(t) {
   t.plan(1);
-  gulp.src(path.join(__dirname, '/fixture.js'))
+  gulp
+    .src(path.join(__dirname, '/fixture.js'))
     .pipe(documentation('md'))
-    .on('end', function() { t.pass(); })
+    .on('end', function() {
+      t.pass();
+    })
     .resume();
 });
