@@ -14,7 +14,7 @@
     "gulp": "^3.8.11",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",
-    "prettier": "^0.22.0",
+    "prettier": "^1.0.0",
     "standard-version": "^4.0.0",
     "tap": "10.3.4"
   },
