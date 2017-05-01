@@ -4,7 +4,7 @@
   "version": "3.2.0",
   "author": "Tom MacWright",
   "dependencies": {
-    "documentation": "4.0.0-rc.0",
+    "documentation": "4.0.0-rc.1",
     "through2": "^2.0.1",
     "vinyl": "^2.0.0"
   },
