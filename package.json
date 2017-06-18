@@ -34,7 +34,8 @@
     "release": "standard-version",
     "precommit": "lint-staged --verbose",
     "format": "prettier --write '{lib,test}/**/*.js' --single-quote",
-    "docs": "documentation readme index.js --section=API"
+    "docs": "documentation readme index.js --section=API",
+    "test": "tap test"
   },
   "config": {
     "commitizen": {
