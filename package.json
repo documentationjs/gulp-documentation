@@ -12,7 +12,7 @@
     "concat-stream": "^1.4.8",
     "cz-conventional-changelog": "^2.0.0",
     "gulp": "^3.8.11",
-    "husky": "^0.13.3",
+    "husky": "^0.14.0",
     "lint-staged": "^3.4.0",
     "prettier": "^0.22.0",
     "standard-version": "^4.0.0",
