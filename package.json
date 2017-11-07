@@ -20,7 +20,7 @@
     "lint-staged": "^4.0.3",
     "prettier": "^1.7.4",
     "standard-version": "^4.2.0",
-    "tap": "10.7.1"
+    "tap": "10.7.3"
   },
   "keywords": [
     "documentation",
