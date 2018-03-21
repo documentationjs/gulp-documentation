@@ -14,7 +14,7 @@
   "devDependencies": {
     "documentation": "^5.1.1",
     "gulp": "^3.9.1",
-    "concat-stream": "^1.6.0",
+    "concat-stream": "1.6.1",
     "cz-conventional-changelog": "^2.0.0",
     "husky": "^0.14.3",
     "lint-staged": "^5.0.0",
