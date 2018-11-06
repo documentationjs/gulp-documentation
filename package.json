@@ -4,7 +4,7 @@
   "version": "3.2.1",
   "author": "Tom MacWright",
   "dependencies": {
-    "through2": "^2.0.3",
+    "through2": "^3.0.0",
     "vinyl": "^2.1.0"
   },
   "peerDependencies": {
